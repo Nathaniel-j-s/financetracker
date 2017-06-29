@@ -10,15 +10,15 @@ app.use(express.static(__dirname + './dist'));
 app.use(bodyParser.json());
 
 // Massive setup
-const connectionString = "postgres://postgres:nathan@localhost/nodesqlproject";
+const connectionString = "postgres://postgres:nathan@localhost/personalfinance";
 const massiveInstance = massive.connectSync({connectionString : connectionString})
 app.set('db', massiveInstance);
 const db = app.get('db');
 
-const collection = {
+const mainCtrl = {
   getInfo: function(req, res, next) {
-    console.log(db.characters)
-    db.characters.listChars([],
+    console.log('Yo');
+    db.datam.getInfo([],
     function(err, result) {
       if (err) {
         console.log(err);
@@ -29,7 +29,7 @@ const collection = {
   }
 }
 
-app.get('/api/financial', collection.getInfo);
+app.get('/api/financial', mainCtrl.getInfo);
 
 // The usual.
 app.listen(5000, function() {

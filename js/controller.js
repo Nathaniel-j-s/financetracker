@@ -5,5 +5,7 @@ angular.module('personalFinance').controller('mainCtrl', function($scope, mainSr
       $scope.info = response.data;
     });
   };
+
+  $scope.getInfo();
   console.log($scope.info);
 })
